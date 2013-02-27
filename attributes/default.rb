@@ -24,3 +24,10 @@ default[:monit][:address] = "localhost"
 default[:monit][:ssl] = false
 default[:monit][:cert] = "/etc/monit/monit.pem"
 default[:monit][:allow] = ["localhost"]
+
+# Nginx proxy
+default[:monit][:http_proxy][:host_name]           = nil
+default[:monit][:http_proxy][:listen_ports]        = [ 80 ]
+default[:monit][:http_proxy][:host_aliases]        = []
+default[:monit][:http_proxy][:basic_auth_username] = "monit"
+default[:monit][:http_proxy][:basic_auth_password] = "monit"
