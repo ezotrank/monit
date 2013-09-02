@@ -1,3 +1,6 @@
+default[:monit][:config]                = "/etc/monit.conf"
+default[:monit][:config_d]              = "/etc/monit.d"
+
 default[:monit][:notify_email]          = "notify@example.com"
 
 default[:monit][:logfile]               = 'syslog facility log_daemon'

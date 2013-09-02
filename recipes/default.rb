@@ -15,7 +15,7 @@ service "monit" do
   supports [:start, :restart, :stop]
 end
 
-directory "/etc/monit/conf.d/" do
+directory node['monit']['config_d'] do
   owner  'root'
   group 'root'
   mode 0755
@@ -23,7 +23,7 @@ directory "/etc/monit/conf.d/" do
   recursive true
 end
 
-template "/etc/monit/monitrc" do
+template node['monit']['config'] do
   owner "root"
   group "root"
   mode 0700
