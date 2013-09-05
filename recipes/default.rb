@@ -1,3 +1,7 @@
+if platform?("centos")
+  include_recipe "yum::epel"
+end
+
 package "monit"
 
 if platform?("ubuntu")

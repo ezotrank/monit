@@ -7,6 +7,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.8.1"
 
 suggests "nginx"
+suggests "yum"
 
 attribute 'monit/notify_email',
   :description => 'The email address to send alerts to.',
