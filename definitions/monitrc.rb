@@ -13,7 +13,7 @@ define :monitrc, :action => :enable, :reload => :delayed, :variables => {}, :tem
       source params[:template_source]
       cookbook params[:template_cookbook]
       variables params[:variables]
-      notifies :restart, resources(:service => "monit"), params[:reload]
+      notifies(:restart, resources(:service => "monit"), params[:reload]) unless[:reload]
       action :create
     end
   else
