@@ -6,7 +6,6 @@ description      "Configures monit.  Originally based off the 37 Signals Cookboo
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.8.1"
 
-suggests "nginx"
 suggests "yum"
 
 attribute 'monit/notify_email',

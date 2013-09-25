@@ -1,8 +1,14 @@
-if platform?("centos")
-  include_recipe "yum::epel"
-end
+include_recipe "yum::epel"
 
 package "monit"
+
+template '/etc/init.d/monit' do
+  owner  'root'
+  group 'root'
+  mode 00755
+  action :create
+  source 'monit_init.erb'
+end
 
 service "monit" do
   action [:enable, :start]
@@ -23,5 +29,5 @@ template node['monit']['config'] do
   group "root"
   mode 0700
   source 'monitrc.erb'
-  notifies :restart, resources(:service => "monit"), :delayed
+  notifies :reload, resources(:service => "monit"), :delayed
 end
