@@ -1,7 +1,7 @@
 default[:monit][:config]                = "/etc/monit.conf"
 default[:monit][:config_d]              = "/etc/monit.d"
 
-defailt[:monit][:enable_notify]         = true
+default[:monit][:enable_notify]         = true
 
 default[:monit][:notify_email]          = "notify@example.com"
 
