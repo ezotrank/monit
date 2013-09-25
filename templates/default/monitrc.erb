@@ -5,6 +5,7 @@ set daemon <%= @node[:monit][:poll_period] %>
 
 set logfile <%= @node[:monit][:logfile] %>
 
+<% if @node[:monit][:enable_notify] %>
 set mailserver <%= @node[:monit][:mailserver][:host] %><%= " port #{@node[:monit][:mailserver][:port]}" if @node[:monit][:mailserver][:port] %>
 <% if @node[:monit][:mailserver][:username] %>
   username "<%= @node[:monit][:mailserver][:username] %>"
@@ -24,6 +25,7 @@ set mail-format {
 }
 
 set alert <%= @node[:monit][:notify_email] %> NOT ON { action, instance, pid, ppid }
+<% end %>
 
 set httpd port <%= node[:monit][:port] %>
   <%= "use address #{node[:monit][:address]}" if node[:monit][:address] %>
