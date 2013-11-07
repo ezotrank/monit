@@ -1,6 +1,8 @@
-include_recipe "yum::epel"
+class Chef::Recipe
+  include MonitExt
+end
 
-package "monit"
+include_recipe "monit::#{node['monit']['distr']}"
 
 template '/etc/init.d/monit' do
   owner  'root'
@@ -8,12 +10,13 @@ template '/etc/init.d/monit' do
   mode 00755
   action :create
   source 'monit_init.erb'
+  variables 'monit_bin' => node['monit']['bin']
 end
 
 service "monit" do
   action [:enable, :start]
   enabled true
-  supports [:start, :restart, :stop, :reload]
+  supports [:start, :restart, :stop]
 end
 
 directory node['monit']['config_d'] do
@@ -29,5 +32,5 @@ template node['monit']['config'] do
   group "root"
   mode 0700
   source 'monitrc.erb'
-  notifies :reload, resources(:service => "monit"), :delayed
+  notifies :restart, resources(:service => "monit"), :delayed
 end
