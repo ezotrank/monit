@@ -15,6 +15,8 @@ bash 'install_monit_source' do
   code <<-EOH
   tar xvf #{file}.tar.gz && cd #{file}
   ./configure --without-pam --prefix=#{node[:monit][:source][:install_dir]} && make && make install
+  sed --in-place '116,121d;' monitrc
+  cp -rf monitrc #{node[:monit][:config]} && chmod 0700 #{node[:monit][:config]}
   EOH
   not_if "test `#{node[:monit][:bin]} -V|head -n 1|awk '{print $5}'` = #{node[:monit][:source][:version]}"
 end
