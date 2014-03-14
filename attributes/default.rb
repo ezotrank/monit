@@ -1,8 +1,8 @@
 default[:monit][:distr] = 'package' #can be source
 
-default[:monit][:source][:version] = '5.6'
+default[:monit][:source][:version] = '5.7a'
 default[:monit][:source][:checksum] = '38e09bd8b39abc59e6b9a9bb7a78f7eac2b02a92f4de1f3a6dc24e84dfedae0d'
-default[:monit][:source][:url] = 'http://mmonit.com/monit/dist/monit-%s.tar.gz'
+default[:monit][:source][:url] = 'http://cl.ly/0Z1E2H1r0U3j/download/monit-%s.tar.gz'
 default[:monit][:source][:install_dir] = '/usr/local'
 
 default[:monit][:bin] = '/usr/bin/monit'
