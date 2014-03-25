@@ -13,18 +13,17 @@ template '/etc/init.d/monit' do
   variables 'monit_bin' => node['monit']['bin']
 end
 
-service "monit" do
-  action [:enable, :start]
-  enabled true
-  supports [:start, :restart, :stop]
-end
-
 directory node['monit']['config_d'] do
   owner  'root'
   group 'root'
   mode 0755
   action :create
   recursive true
+end
+
+service "monit" do
+  action :enable
+  supports [:start, :restart, :stop]
 end
 
 template node['monit']['config'] do
@@ -34,3 +33,4 @@ template node['monit']['config'] do
   source 'monitrc.erb'
   notifies :restart, resources(:service => "monit"), :delayed
 end
+
